@@ -19,9 +19,12 @@ jobs:
 
       - name: Installer les dépendances
         run: npm install
+        working-directory: ./front
 
       - name: Build du projet
         run: npm run build -- --configuration production
+        working-directory: ./front
 
       - name: Lancer les tests (headless)
         run: npm test -- --watch=false --browsers=ChromeHeadless
+        working-directory: ./front
