@@ -3,6 +3,8 @@ name: CI Angular
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -57,8 +59,11 @@ jobs:
           args: >
             -Dsonar.projectKey=totodej_BobApp
             -Dsonar.organization=totodej
-            -Dsonar.java.binaries=back/target/classes
-            -Dsonar.coverage.jacoco.xmlReportPaths=back/target/site/jacoco/jacoco.xml
+            -Dsonar.sources=front/src,back/src/main/java
+            -Dsonar.tests=front/src,back/src/test/java
             -Dsonar.javascript.lcov.reportPaths=front/coverage/lcov.info
+            -Dsonar.java.binaries=back/target/classes
+            -Dsonar.java.coveragePlugin=jacoco
+            -Dsonar.coverage.jacoco.xmlReportPaths=back/target/site/jacoco/jacoco.xml
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
