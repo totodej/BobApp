@@ -51,10 +51,11 @@ jobs:
           name: coverage-backend
           path: ./back/target/site/jacoco
 
-      - name: Analyse SonarQube
-        uses: sonarsource/sonarqube-scan-action@v2
+      - name: Analyse SonarCloud
+        uses: SonarSource/sonarcloud-github-action@v2
         with:
           args: >
-            -Dsonar.projectKey=bobapp
-            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.projectKey=totodej_BobApp
+            -Dsonar.organization=totodej
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
