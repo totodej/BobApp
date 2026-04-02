@@ -54,8 +54,7 @@ jobs:
       - name: Analyse SonarQube
         uses: sonarsource/sonarqube-scan-action@v2
         with:
-          projectBaseDir: .
-          extraProperties: |
-            sonar.projectKey=bobapp
-            sonar.host.url=http://SONAR_HOST_URL
-            sonar.login=${{ secrets.SONAR_TOKEN }}
+          args: >
+            -Dsonar.projectKey=bobapp
+            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
