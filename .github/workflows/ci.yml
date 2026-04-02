@@ -57,5 +57,6 @@ jobs:
           args: >
             -Dsonar.projectKey=totodej_BobApp
             -Dsonar.organization=totodej
+            -Dsonar.java.binaries=back/target/classes
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
