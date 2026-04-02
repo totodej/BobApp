@@ -34,3 +34,19 @@ jobs:
         with:
           name: coverage-report
           path: ./front/coverage
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Build & tests backend
+        run: mvn clean verify
+        working-directory: ./back
+
+      - name: Upload coverage backend
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-backend
+          path: ./back/target/site/jacoco
