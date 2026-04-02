@@ -58,5 +58,7 @@ jobs:
             -Dsonar.projectKey=totodej_BobApp
             -Dsonar.organization=totodej
             -Dsonar.java.binaries=back/target/classes
+            -Dsonar.coverage.jacoco.xmlReportPaths=back/target/site/jacoco/jacoco.xml
+            -Dsonar.javascript.lcov.reportPaths=front/coverage/lcov.info
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
