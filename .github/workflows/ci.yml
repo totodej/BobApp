@@ -50,3 +50,12 @@ jobs:
         with:
           name: coverage-backend
           path: ./back/target/site/jacoco
+
+      - name: Analyse SonarQube
+        uses: sonarsource/sonarqube-scan-action@v2
+        with:
+          projectBaseDir: .
+          extraProperties: |
+            sonar.projectKey=bobapp
+            sonar.host.url=http://SONARQUBE_SERVER_URL
+            sonar.login=${{ secrets.SONAR_TOKEN }}
