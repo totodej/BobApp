@@ -60,11 +60,11 @@ jobs:
             -Dsonar.projectKey=totodej_BobApp
             -Dsonar.organization=totodej
             -Dsonar.sources=front/src,back/src/main/java
-            -Dsonar.tests=front/src,back/src/test/java
+            -Dsonar.tests=back/src/test/java
             -Dsonar.javascript.lcov.reportPaths=front/coverage/lcov.info
             -Dsonar.java.binaries=back/target/classes
             -Dsonar.java.coveragePlugin=jacoco
             -Dsonar.coverage.jacoco.xmlReportPaths=back/target/site/jacoco/jacoco.xml
-            -Dsonar.exclusions=**/.DS_Store,**/node_modules/**,**/dist/**,**/build/**
+            -Dsonar.exclusions=**/.DS_Store,**/node_modules/**,**/dist/**,**/build/**,**/build-wrapper-dump.json
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
