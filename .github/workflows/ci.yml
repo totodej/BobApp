@@ -67,23 +67,33 @@ jobs:
   sonar:
     runs-on: ubuntu-latest
     needs: [front, back]
-
+  
     steps:
       - name: Checkout du code
         uses: actions/checkout@v4
-
+  
       - name: Télécharger coverage front
         uses: actions/download-artifact@v4
         with:
           name: coverage-front
           path: ./front/coverage
-
+  
       - name: Télécharger coverage backend
         uses: actions/download-artifact@v4
         with:
           name: coverage-backend
           path: ./back/target/site/jacoco
-
+  
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+  
+      - name: Build backend (for Sonar)
+        run: mvn clean compile
+        working-directory: ./back
+  
       - name: Analyse SonarCloud
         uses: SonarSource/sonarcloud-github-action@v2
         with:
@@ -95,9 +105,8 @@ jobs:
             -Dsonar.test.inclusions=front/src/**/*.spec.ts
             -Dsonar.typescript.lcov.reportPaths=front/coverage/bobapp/lcov.info
             -Dsonar.java.binaries=back/target/classes
-            -Dsonar.java.coveragePlugin=jacoco
             -Dsonar.coverage.jacoco.xmlReportPaths=back/target/site/jacoco/jacoco.xml
-            -Dsonar.exclusions=src/environments/**,src/main.ts,src/test.ts,**/*.spec.ts
+            -Dsonar.exclusions=**/node_modules/**,**/dist/**,src/environments/**,src/main.ts,src/test.ts
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          
+            
