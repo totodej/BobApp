@@ -53,6 +53,11 @@ jobs:
           name: coverage-backend
           path: ./back/target/site/jacoco
 
+      - name: Debug coverage files
+        run: |
+          echo "Listing coverage folder"
+          ls -R front/coverage || true
+
       - name: Analyse SonarCloud
         uses: SonarSource/sonarcloud-github-action@v2
         with:
