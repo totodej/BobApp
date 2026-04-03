@@ -57,11 +57,17 @@ jobs:
         run: mvn clean verify
         working-directory: ./back
 
-      - name: Upload coverage backend
+      - name: Upload backend Jacoco XML
         uses: actions/upload-artifact@v4
         with:
           name: coverage-backend
-          path: ./back/target/site/jacoco
+          path: ./back/target/site/jacoco/jacoco.xml
+
+      - name: Upload backend compiled classes
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-classes
+          path: ./back/target/classes
 
 
   sonar:
@@ -83,6 +89,12 @@ jobs:
         with:
           name: coverage-backend
           path: ./back/target/site/jacoco
+
+      - name: Download backend compiled classes
+        uses: actions/download-artifact@v4
+        with:
+          name: backend-classes
+          path: ./back/target/classes
   
       - name: Debug coverage files
         run: |
@@ -90,6 +102,7 @@ jobs:
           ls -R front/coverage || true
           echo "=== BACK ==="
           ls -R back/target/site/jacoco || true
+          ls -R back/target/classes || true
   
       - name: Analyse SonarCloud
         uses: SonarSource/sonarcloud-github-action@v2
