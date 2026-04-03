@@ -90,19 +90,11 @@ jobs:
           name: coverage-backend
           path: ./back/target/site/jacoco
 
-      - name: Download backend compiled classes
+      - name: Télécharger les classes compilées du backend
         uses: actions/download-artifact@v4
         with:
           name: backend-classes
           path: ./back/target/classes
-  
-      - name: Debug coverage files
-        run: |
-          echo "=== FRONT ==="
-          ls -R front/coverage || true
-          echo "=== BACK ==="
-          ls -R back/target/site/jacoco || true
-          ls -R back/target/classes || true
   
       - name: Analyse SonarCloud
         uses: SonarSource/sonarcloud-github-action@v2
