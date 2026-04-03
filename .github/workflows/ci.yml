@@ -66,6 +66,7 @@ jobs:
             -Dsonar.organization=totodej
             -Dsonar.sources=front/src,back/src/main/java
             -Dsonar.tests=back/src/test/java
+            -Dsonar.test.inclusions=front/src/**/*.spec.ts
             -Dsonar.javascript.lcov.reportPaths=front/coverage/bobapp/lcov.info
             -Dsonar.java.binaries=back/target/classes
             -Dsonar.java.coveragePlugin=jacoco
