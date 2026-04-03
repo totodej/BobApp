@@ -65,9 +65,9 @@ jobs:
             -Dsonar.projectKey=totodej_BobApp
             -Dsonar.organization=totodej
             -Dsonar.sources=front/src,back/src/main/java
-            -Dsonar.tests=back/src/test/java
+             -Dsonar.tests=front/src,back/src/test/java
             -Dsonar.test.inclusions=front/src/**/*.spec.ts
-            -Dsonar.javascript.lcov.reportPaths=front/coverage/bobapp/lcov.info
+            -Dsonar.typescript.lcov.reportPaths=front/coverage/bobapp/lcov.info
             -Dsonar.java.binaries=back/target/classes
             -Dsonar.java.coveragePlugin=jacoco
             -Dsonar.coverage.jacoco.xmlReportPaths=back/target/site/jacoco/jacoco.xml
