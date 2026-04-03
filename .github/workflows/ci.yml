@@ -90,9 +90,16 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
   
-      - name: Build backend (for Sonar)
-        run: mvn clean compile
+      - name: Rebuild backend (needed for Sonar)
+        run: mvn clean install -DskipTests
         working-directory: ./back
+
+      - name: Vérifier fichiers
+        run: |
+          echo "=== FRONT COVERAGE ==="
+          ls -R front/coverage || true
+          echo "=== BACK CLASSES ==="
+          ls -R back/target/classes || true
   
       - name: Analyse SonarCloud
         uses: SonarSource/sonarcloud-github-action@v2
