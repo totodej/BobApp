@@ -53,10 +53,12 @@ jobs:
           name: coverage-backend
           path: ./back/target/site/jacoco
 
-      - name: Debug coverage files
+      - name: Debug lcov
         run: |
-          echo "Listing coverage folder"
-          ls -R front/coverage || true
+          echo "===== LCOV ====="
+          head -50 front/coverage/bobapp/lcov.info
+
+        
 
       - name: Analyse SonarCloud
         uses: SonarSource/sonarcloud-github-action@v2
