@@ -63,6 +63,12 @@ jobs:
           name: coverage-backend
           path: ./back/target/site/jacoco/jacoco.xml
 
+      - name: Upload rapport HTML Jacoco
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-html
+          path: ./back/target/site/jacoco
+
       - name: Upload backend compiled classes
         uses: actions/upload-artifact@v4
         with:
